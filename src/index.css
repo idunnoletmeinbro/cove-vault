@@ -1,0 +1,49 @@
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-tap-highlight-color: transparent }
+h1, h2, h3, h4 { font-family: var(--font-display); margin: .2em 0; color: var(--text) }
+h2 { color: var(--ocean) } [data-theme=dark] h2 { color: var(--aqua) }
+.app { max-width: 1200px; margin: 0 auto; padding-bottom: 90px }
+.top { display: flex; align-items: center; gap: 10px; padding: 10px 16px; position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px) }
+.top h1 { flex: 1; font-size: 1.4rem; color: var(--lagoon) } .logo { height: 44px }
+main { padding: 0 14px }
+.nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-around; background: var(--surface); border-top: 2px solid var(--border); padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); z-index: 10; box-shadow: var(--shadow) }
+.nav button { background: none; border: 0; display: flex; flex-direction: column; align-items: center; font: 600 .75rem var(--font-display); color: var(--muted); padding: 4px 10px; border-radius: var(--radius-sm) }
+.nav button span { font-size: 1.35rem } .nav button.on { color: var(--primary); background: var(--surface-2) }
+@media (min-width: 800px) { .nav { position: sticky; top: 64px; bottom: auto; border: 0; background: none; box-shadow: none; justify-content: center; gap: 8px } .nav button { flex-direction: row; gap: 6px; font-size: .95rem } .app { padding-bottom: 20px } }
+button, .btn { font: 700 .95rem var(--font-display); border: 2px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 8px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap }
+button:disabled { opacity: .5 }
+.primary { background: var(--primary); color: var(--primary-text); border-color: transparent; box-shadow: 0 3px 0 var(--ocean) }
+.ghost { border-color: transparent; background: transparent; padding: 6px 10px }
+.danger { color: #fff; background: var(--starfish); border-color: transparent }
+input, select, textarea { font: inherit; color: var(--text); background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; width: 100%; min-width: 0 }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--seafoam) }
+textarea { min-height: 80px } label { display: block; font-weight: 600; font-size: .85rem; color: var(--muted); margin: 8px 0 } label > input, label > select, label > textarea { margin-top: 4px; color: var(--text) }
+.row { display: flex; align-items: center; gap: 8px } .head { margin: 10px 0 } .head h2 { flex: 1 }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px } .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px } .filters input { flex: 2 1 220px } .filters select { flex: 1 1 110px; width: auto }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px }
+.card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; cursor: pointer; border: 2px solid var(--border); transition: transform .15s }
+.card:hover { transform: translateY(-2px) } .card.pad { padding: 14px; margin-bottom: 12px; cursor: default } .card.pad:hover { transform: none }
+.thumb { aspect-ratio: 1; background: linear-gradient(135deg, var(--mist), var(--aqua)); position: relative; display: grid; place-items: center; font-size: 3rem; overflow: hidden }
+.thumb img { width: 100%; height: 100%; object-fit: cover } .collage { grid-template-columns: 1fr 1fr } .collage img { aspect-ratio: 1 }
+.store { position: absolute; top: 8px; left: 8px; font: normal 700 .7rem var(--font-display); padding: 3px 9px; border-radius: 999px; background: var(--surface); color: var(--ocean) }
+.s-Booth { background: #fc4d50; color: #fff } .s-Gumroad { background: #ff90e8; color: #222 } .s-Jinxxy { background: var(--shell); color: #fff } .s-Payhip { background: var(--lagoon); color: #fff }
+.body { padding: 10px 12px } .body h4 { font-size: .98rem; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden } small, .muted { color: var(--muted) }
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); margin: 2px } .chip.base { background: var(--sand); color: var(--coconut) }
+.chip.hot { background: var(--duckie); color: #5a4300 } .p-high { background: var(--starfish); color: #fff } .p-med { background: var(--duckie); color: #5a4300 }
+.chip.big { flex-direction: column; align-items: flex-start; padding: 8px 14px; border-radius: var(--radius-sm); font-size: .85rem; background: var(--surface); border: 2px solid var(--border) }
+.totals { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 10px } .tags { display: flex; flex-wrap: wrap; margin-top: 6px }
+.x { padding: 0 4px; border: 0; background: none; font-size: 1rem }
+.empty { text-align: center; padding: 50px 20px; color: var(--muted) } .empty .bob { font-size: 4rem; animation: bob 2.4s ease-in-out infinite } @keyframes bob { 50% { transform: translateY(-8px) rotate(-6deg) } }
+.modal { position: fixed; inset: 0; background: rgba(0, 40, 60, .45); display: flex; align-items: flex-end; justify-content: center; z-index: 50 }
+.sheet { background: var(--bg); width: 100%; max-width: 620px; max-height: 92vh; overflow: auto; border-radius: 26px 26px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom)) }
+@media (min-width: 800px) { .modal { align-items: center } .sheet { border-radius: 26px } }
+fieldset { border: 2px dashed var(--border); border-radius: var(--radius-sm); display: flex; flex-wrap: wrap; gap: 14px } .check { display: flex; align-items: center; gap: 6px; color: var(--text); margin: 2px 0 } .check input { width: auto }
+.actions { margin-top: 14px; flex-wrap: wrap }
+.masonry { columns: 2 170px; column-gap: 12px } .masonry figure { break-inside: avoid; margin: 0 0 12px; background: var(--surface); border-radius: var(--radius); padding: 8px; box-shadow: var(--shadow) } .masonry img { width: 100%; border-radius: var(--radius-sm); display: block }
+.masonry input { border: 0; padding: 4px; background: none }
+.pal { display: flex; gap: 3px; margin: 6px 0 } .pal i { flex: 1; height: 16px; border-radius: 5px; cursor: copy; min-width: 14px }
+.kanban { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory } .col { flex: 0 0 210px; background: var(--surface-2); border-radius: var(--radius); padding: 10px; scroll-snap-align: start; min-height: 120px }
+.mini { background: var(--surface); border-radius: var(--radius-sm); padding: 8px 10px; margin-bottom: 8px; box-shadow: var(--shadow); cursor: pointer; display: flex; flex-direction: column } .mini.done { opacity: .55; text-decoration: line-through }
+.stages { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 8px } .stages button.on { background: var(--duckie); border-color: var(--duckie); color: #4a3800 }
+.center { text-align: center } code { background: var(--surface-2); padding: 1px 5px; border-radius: 6px }

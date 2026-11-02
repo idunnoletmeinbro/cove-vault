@@ -1,0 +1,30 @@
+/* ===== Cove Vault theme — edit ONLY this file to re-skin the app =====
+   Palette sampled from the Coconut Cove Creations Payhip banner/logo. */
+:root {
+  --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+  --radius: 18px; --radius-sm: 12px;
+
+  --ocean: #005a82;     /* deep logo outline blue */
+  --lagoon: #1c879f;    /* primary teal */
+  --seafoam: #68b7b7;
+  --aqua: #90cdcf;
+  --mist: #dbedeb;
+  --coconut: #7a4e30;   /* coconut shell brown */
+  --sand: #f6ead2;
+  --starfish: #f0845c;  /* coral accent */
+  --duckie: #ffd23f;    /* rubber duck yellow */
+  --shell: #a98bd6;     /* purple seashell */
+  --hibiscus: #f6a5b8;
+
+  --bg: #f3faf8; --surface: #ffffff; --surface-2: #e9f5f3;
+  --text: #17384a; --muted: #5f7f88; --border: #cfe6e3;
+  --primary: var(--lagoon); --primary-text: #ffffff; --accent: var(--starfish);
+  --shadow: 0 6px 18px rgba(0, 90, 130, .12);
+}
+:root[data-theme='dark'] {
+  --bg: #0d2430; --surface: #143341; --surface-2: #1a3f4f;
+  --text: #e8f6f4; --muted: #9cc2c4; --border: #24556a;
+  --primary: var(--seafoam); --primary-text: #0d2430;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .35);
+}

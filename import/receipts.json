@@ -1,0 +1,13 @@
+{
+  "app": "cove-vault",
+  "version": 1,
+  "exportedAt": "2026-11-02T06:12:48.763Z",
+  "source": "gmail-receipts",
+  "counts": {
+    "Booth": 0,
+    "Gumroad": 0,
+    "Jinxxy": 0,
+    "Payhip": 0
+  },
+  "items": []
+}
