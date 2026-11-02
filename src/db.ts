@@ -30,11 +30,14 @@ export async function exportAll(): Promise<Backup> {
 export async function importData(data: any): Promise<number> {
   const items: Item[] = (data.items ?? (Array.isArray(data) ? data : [])).map((r: any) => ({ ...blankItem(r.kind ?? 'library'), ...r, id: r.id ?? uid(), tags: r.tags ?? [], bases: r.bases ?? [], unityProjects: r.unityProjects ?? [] }))
   const existing = await db.items.toArray(); const urls = new Set(existing.map(e => e.kind + (e.url ?? '')).filter(u => u.length > 8))
-  const fresh = items.filter(i => !(i.url && urls.has(i.kind + i.url)))
+  const byId = new Map(existing.map(e => [e.id, e]))
+  // Items whose id already exists: refresh store-sourced fields (price/currency/url/notes, add tags), keep the user's own edits.
+  const updates = items.filter(i => byId.has(i.id)).map(i => { const e = byId.get(i.id)!; return { ...e, price: i.price ?? e.price, currency: i.currency ?? e.currency, url: i.url ?? e.url, notes: i.notes ?? e.notes, tags: Array.from(new Set([...(e.tags ?? []), ...(i.tags ?? [])])) } })
+  const fresh = items.filter(i => !byId.has(i.id) && !(i.url && urls.has(i.kind + i.url)))
   await db.transaction('rw', db.items, db.boards, db.projects, async () => {
-    await db.items.bulkPut(fresh)
+    await db.items.bulkPut([...fresh, ...updates])
     if (data.boards) await db.boards.bulkPut(data.boards)
     if (data.projects) await db.projects.bulkPut(data.projects)
   })
-  return fresh.length + (data.boards?.length ?? 0) + (data.projects?.length ?? 0)
+  return fresh.length + updates.length + (data.boards?.length ?? 0) + (data.projects?.length ?? 0)
 }
